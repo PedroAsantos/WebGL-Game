@@ -42,19 +42,19 @@ var tz = 0.0;
 
 // The rotation angles in degrees
 
-var angleXX = 0.0;
+var angleXX = 10.0;
 
-var angleYY = 0.0;
+var angleYY = 10.0;
 
 var angleZZ = 0.0;
 
 // The scaling factors
 
-var sx = 0.5;
+var sx = 1.23;
 
-var sy = 0.5;
+var sy = 1.23;
 
-var sz = 0.5;
+var sz = 1.23;
 
 // GLOBAL Animation controls
 
@@ -66,19 +66,19 @@ var globalRotationYY_SPEED = 1;
 
 // Local Animation controls
 
-var rotationXX_ON = 1;
+var rotationXX_ON = 0;
 
 var rotationXX_DIR = 1;
 
 var rotationXX_SPEED = 1;
 
-var rotationYY_ON = 1;
+var rotationYY_ON = 0;
 
 var rotationYY_DIR = 1;
 
 var rotationYY_SPEED = 1;
 
-var rotationZZ_ON = 1;
+var rotationZZ_ON = 0;
 
 var rotationZZ_DIR = 1;
 
@@ -96,15 +96,15 @@ var projectionType = 0;
 
 // Ambient coef.
 
-var kAmbi = [ 0.2, 0.2, 0.2 ];
+var kAmbi = [ 2, 2, 2 ];
 
 // Difuse coef.
 
-var kDiff = [ 0.7, 0.7, 0.7 ];
+var kDiff = [ 0.2,0.2, 0.2 ];
 
 // Specular coef.
 
-var kSpec = [ 0.7, 0.7, 0.7 ];
+var kSpec = [ 0, 0, 0 ];
 
 // Phong coef.
 
@@ -204,7 +204,7 @@ function computeIllumination( mvMatrix ) {
 
 	for( var i = 0; i < colors.length; i++ )
 	{
-		colors[i] = 0.0;
+		colors[i] = 0;
 	}
 
     // SMOOTH-SHADING
@@ -606,6 +606,11 @@ function animate() {
 
 			angleZZ += rotationZZ_DIR * rotationZZ_SPEED * (90 * elapsed) / 1000.0;
 	    }
+		//	console.log("anglexx"+angleXX);
+	//		console.log("angleYY"+angleYY);
+	//		console.log("anglexx"+angleZZ);
+		//	console.log("sx"+sx);
+
 
 		// Rotating the light sources
 
@@ -618,6 +623,7 @@ function animate() {
 				lightSources[i].setRotAngleYY( angle );
 			}
 		}
+		
 	}
 
 	lastTime = timeNow;
@@ -675,6 +681,79 @@ function setEventListeners(){
 	document.onkeydown = handleKeyDown;
 
 	document.onkeyup = handleKeyUp;
+
+	document.getElementById("file").onchange = function(){
+
+		var file = this.files[0];
+
+		var reader = new FileReader();
+
+		reader.onload = function( progressEvent ){
+
+			// Entire file read as a string
+
+			// The tokens/values in the file
+
+			// Separation between values is 1 or mode whitespaces
+
+			var tokens = this.result.split(/\s\s*/);
+
+			// Array of values; each value is a string
+
+			var numVertices = parseInt( tokens[0] );
+
+			// For every vertex we have 6 floating point values
+
+			var i, j;
+
+			var aux = 1;
+
+			var newVertices = [];
+
+			var newColors = []
+
+			for( i = 0; i < numVertices; i++ ) {
+
+				for( j = 0; j < 3; j++ ) {
+
+					newVertices[ 3 * i + j ] = parseFloat( tokens[ aux++ ] );
+				}
+
+				for( j = 0; j < 3; j++ ) {
+
+					newColors[ 3 * i + j ] = parseFloat( tokens[ aux++ ] );
+				}
+			}
+
+			// Assigning to the current model
+
+			vertices = newVertices;
+
+			colors = newColors;
+
+			// Rendering the model just read
+
+			initBuffers();
+
+			// RESET the transformations - NEED AUXILIARY FUNCTION !!
+
+			tx = ty = tz = 0.0;
+
+			angleXX = 10.0;
+			angleYY = 10.0;
+			angleZZ = 0.0;
+
+			sx = sy = sz = 0.8593140087705231;
+
+			drawScene();
+
+			console.log( "AFTER RENDERING" );
+		};
+
+		// Entire file read as a string
+
+		reader.readAsText( file );
+	}
 
 	document.getElementById("obj-file").onchange = function(){
 
@@ -752,9 +831,11 @@ function setEventListeners(){
 
 			tx = ty = tz = 0.0;
 
-			angleXX = angleYY = angleZZ = 0.0;
+			angleXX = 10;
+			angleYY = 5;
+			angleZZ = 0.0;
 
-			sx = sy = sz = 0.7;
+			sx = sy = sz = 0.8593140087705231;
 		};
 
 		// Entire file read as a string
@@ -822,7 +903,7 @@ function setEventListeners(){
 
 			angleXX = angleYY = angleZZ = 0.0;
 
-			sx = sy = sz = 0.5;
+			sx = sy = sz = 1.23;
 		};
 
 		// Entire file read as a string
@@ -1036,6 +1117,7 @@ function initWebGL( canvas ) {
 		// DEFAULT: The viewport occupies the whole canvas
 
 		// DEFAULT: The viewport background color is WHITE
+		gl.clearColor(1.0, 1.0, 1.0, 1.0);
 
 		// NEW - Drawing the triangles defining the model
 
@@ -1045,7 +1127,7 @@ function initWebGL( canvas ) {
 
 		// Enable FACE CULLING
 
-		gl.enable( gl.CULL_FACE );
+	//	gl.enable( gl.CULL_FACE );
 
 		// DEFAULT: The BACK FACE is culled!!
 
