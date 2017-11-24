@@ -190,10 +190,10 @@ function drawMonkeyRoom1(){
   setUniforms();
 
   mvPushMatrix();
-    mat4.scale( app.mvMatrix, [2,2,2] )
-    drawObject( app.models.room_walls, 0 );
+    mat4.scale( app.mvMatrix, [2,2,2] );
+        drawObject( app.models.room_walls, 0 );
     if( !app.breakWalls ){
-      drawObject( app.models.room_wall_unbroken, 0 );
+     drawObject( app.models.room_wall_unbroken, 0 );
     }
     drawObject( app.models.room_floor, 0 );
     drawObject( app.models.room_ceiling, 0 );
@@ -203,7 +203,7 @@ function drawMonkeyRoom1(){
         mat4.rotate( app.mvMatrix, degToRad( 180 ), [0,1,0] );
         mat4.translate( app.mvMatrix, app.monkey.position );
         gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
-        drawObject( app.models.world, 100, [0.83,0.69,0.22,1.0] );
+        drawObject( app.models.suzanne, 100, [0.83,0.69,0.22,1.0] );
       mvPopMatrix();
 
       mvPushMatrix();
@@ -223,4 +223,41 @@ function drawMonkeyRoom1(){
   }
 }
 
-app.drawScene = drawWorld;
+
+function drawWorld2(){
+  gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.01, 1000.0, app.pMatrix);
+
+  mat4.identity(app.mvMatrix);
+
+  //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 0, 0]);
+  gl.useProgram( shaderProgram );
+
+  var normalMatrix = mat3.create();
+  mat4.toInverseMat3(app.mvMatrix, normalMatrix);
+  mat3.transpose(normalMatrix);
+  mat3.multiplyVec3( normalMatrix, app.lightVectorStatic, app.lightVector )
+  mat4.multiplyVec3( app.mvMatrix, app.lightLocationStatic, app.lightLocation )
+  gl.uniform3fv( shaderProgram.lightLocation, app.lightLocation );
+  gl.uniform3fv( shaderProgram.lightVector, app.lightVector );
+  setUniforms();
+
+  mvPushMatrix();
+
+    mat4.translate(app.mvMatrix, [0.0, 0.0, -10.3]);
+    mat4.rotate(app.mvMatrix, degToRad(270), [0, 1, 0]);
+    mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
+    gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
+    drawObject( app.models.world, 1.0, [1.83,1.69,0.22,1.0]);
+  mvPopMatrix();
+
+
+
+}
+
+
+
+
+//app.drawScene = drawMonkeyRoom1;
+app.drawScene = drawWorld2;
