@@ -159,7 +159,7 @@ function setupFadeIn(){
   app.animations.currentAnimation = fadeIn;
 //  app.ambientIntensity = app.ambientIntensityStart;
 //  app.diffuseIntensity = app.diffuseIntensityStart;
-  app.drawScene = drawTunnelScene;
+//  app.drawScene = drawTunnelScene;
 }
 
 function fadeIn(){

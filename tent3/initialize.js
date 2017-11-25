@@ -79,6 +79,9 @@ function initShaders() {
   shaderProgram.materialShininessUniform = gl.getUniformLocation(shaderProgram, "uMaterialShininess");
   shaderProgram.useTexturesUniform = gl.getUniformLocation(shaderProgram, "uUseTextures");
   shaderProgram.ambientColorUniform = gl.getUniformLocation(shaderProgram, "uAmbientColor");
+
+  shaderProgram.ambientProduct = gl.getUniformLocation(shaderProgram, "ambientProduct");
+
   shaderProgram.hasTexure = gl.getUniformLocation(shaderProgram, "uHasTexure");
   shaderProgram.hasFlashlight = gl.getUniformLocation(shaderProgram, "uHasFlashlight");
   shaderProgram.lightLocation = gl.getUniformLocation(shaderProgram, "uLightLocation");
@@ -139,7 +142,8 @@ function initTexture( object, url) {
 }
 
 function initTextures(){
-  //initTexture( app.models.world,  "textures/stone_wall.png"  );
+  initTexture( app.models.world,  "textures/stony_ground.jpg"  );
+  initTexture( app.models.tank,  "downModels/source/Tank_dif.jpg"  );
 
   initTexture( app.models.room_ceiling, "textures/stony_ground.jpg" );
   initTexture( app.models.room_walls, "textures/stone_wall.png" );

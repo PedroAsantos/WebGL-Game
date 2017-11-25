@@ -90,8 +90,9 @@ function drawWorld(){
 
     mvPushMatrix();
 
-      gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
-      drawObject( app.models.world, 100, [0.83,1.69,4.22,1.0] );
+    mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
+
+    drawObject( app.models.world, 1.0, [1.83,1.69,0.22,1.0]);
 
     mvPopMatrix();
     if( app.animate ){
@@ -234,25 +235,37 @@ function drawWorld2(){
   //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 0, 0]);
   gl.useProgram( shaderProgram );
 
-  var normalMatrix = mat3.create();
+/*  var normalMatrix = mat3.create();
   mat4.toInverseMat3(app.mvMatrix, normalMatrix);
   mat3.transpose(normalMatrix);
   mat3.multiplyVec3( normalMatrix, app.lightVectorStatic, app.lightVector )
   mat4.multiplyVec3( app.mvMatrix, app.lightLocationStatic, app.lightLocation )
   gl.uniform3fv( shaderProgram.lightLocation, app.lightLocation );
   gl.uniform3fv( shaderProgram.lightVector, app.lightVector );
+  */
   setUniforms();
 
+  vec3.multiply( app.kAmbi, app.ambient_Illumination,app.ambientProduct);
+
+  gl.uniform3fv( shaderProgram.ambientProduct, mat4.flatten(app.ambientProduct));
   mvPushMatrix();
 
-    mat4.translate(app.mvMatrix, [0.0, 0.0, -10.3]);
-    mat4.rotate(app.mvMatrix, degToRad(270), [0, 1, 0]);
-    mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
+    mat4.translate(app.mvMatrix, [1.5, 0.0, -45.3]);
+    mat4.rotate(app.mvMatrix, degToRad(280), [0, 1, 0]);
+  //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
     gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
-    drawObject( app.models.world, 1.0, [1.83,1.69,0.22,1.0]);
+    drawObject( app.models.world, 1.0, [255.0,255.0,255.0,3.0]);
   mvPopMatrix();
 
+    gl.uniform3fv( shaderProgram.ambientProduct, mat4.flatten(app.ambientProduct));
+    mvPushMatrix();
 
+      mat4.translate(app.mvMatrix, [0.0, -6.0, -45.3]);
+      mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
+    //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
+      gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
+      drawObject( app.models.tank, 100, [255.0,255.0,255.0,3.0]);
+    mvPopMatrix();
 
 }
 

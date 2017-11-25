@@ -44,6 +44,11 @@ var app = {};
   app.drawScene;
   app.scenechange = false;
   // room light
+
+  app.ambient_Illumination = [ 0.2,0.2, 0.2 ];
+  app.kAmbi = [ 0.3, 0.3, 0.3 ];
+  app.ambientProduct= vec3.create();
+
   app.lightLocationStatic = [0,2,1.5];
   app.lightVectorStatic = [0,-1,0];
   app.lightLocation = vec3.create();
