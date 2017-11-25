@@ -260,7 +260,7 @@ function drawWorld2(){
     gl.uniform3fv( shaderProgram.ambientProduct, mat4.flatten(app.ambientProduct));
     mvPushMatrix();
 
-      mat4.translate(app.mvMatrix, [0.0, -6.0, -45.3]);
+      mat4.translate(app.mvMatrix, app.tank.position);
       mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
     //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
       gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );

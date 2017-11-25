@@ -18,11 +18,14 @@ var app = {};
   // texture holder
   app.textures = {};
   // keyboard key ids
-  app.keys = { W: 87, A: 65, S: 83, D: 68 };
+  app.keys = { W: 87, LL: 37, S: 83, RR: 39 };
   app.keys.pressed = {};
   for( key in app.keys ){
     app.keys.pressed[ app.keys[ key ] ] = false;
   }
+  // tank
+  app.tank = {}
+  app.tank.position = [0.0, -6.0, -45.3];
   // camera
   app.camera = {};
   app.camera.position = [0,0.3,3.7];

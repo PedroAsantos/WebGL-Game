@@ -4,7 +4,7 @@ function animate() {
   if (app.lastTime != 0) {
     // animate stuff
     app.angle += (90 * app.elapsed) / 1000.0;
-
+    moveTank();
   /*  if( !app.camera.disable ){
       cameraMove();
     }
@@ -31,8 +31,8 @@ function webGLStart( meshes ) {
 //  initPointerLock();
   initTextures();
 
-  //document.onkeydown = cameraKeyDownHandler;
-  //document.onkeyup = cameraKeyUpHandler;
+  document.onkeydown = cameraKeyDownHandler;
+  document.onkeyup = cameraKeyUpHandler;
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);

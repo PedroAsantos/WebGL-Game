@@ -142,8 +142,8 @@ function initTexture( object, url) {
 }
 
 function initTextures(){
-  initTexture( app.models.world,  "textures/stony_ground.jpg"  );
-  initTexture( app.models.tank,  "downModels/source/Tank_dif.jpg"  );
+  initTexture( app.models.world,  "textures/stony_ground.jpg");
+  initTexture( app.models.tank,  "downModels/source/Tank_dif.jpg");
 
   initTexture( app.models.room_ceiling, "textures/stony_ground.jpg" );
   initTexture( app.models.room_walls, "textures/stone_wall.png" );
