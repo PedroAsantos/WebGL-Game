@@ -18,14 +18,22 @@ var app = {};
   // texture holder
   app.textures = {};
   // keyboard key ids
-  app.keys = { W: 87, LL: 37, S: 83, RR: 39 };
+  app.keys = {  LL: 37, RR: 39 };
   app.keys.pressed = {};
   for( key in app.keys ){
     app.keys.pressed[ app.keys[ key ] ] = false;
   }
   // tank
-  app.tank = {}
+  app.tank = {};
   app.tank.position = [0.0, -6.0, -45.3];
+  app.tank.velocity;
+  app.tank.inicialVelocity=0.1;
+  //bubble
+  app.bubble = {};
+  app.bubble.position= [1.5, 3.9, -45.3];
+  app.bubble.accelaration = -60.0905;
+  app.bubble.up = true;
+  app.bubble.forward = true;
   // camera
   app.camera = {};
   app.camera.position = [0,0.3,3.7];
@@ -43,6 +51,7 @@ var app = {};
   app.camera.shakeAmplitude = 0.01;
   // matrices
   app.elapsed = 0;
+  app.totaltime = 0;
   // which function to use to draw
   app.drawScene;
   app.scenechange = false;

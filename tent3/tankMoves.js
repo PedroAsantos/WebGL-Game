@@ -1,5 +1,5 @@
 
-function cameraKeyDownHandler( e ){
+function keyDownHandler( e ){
   app.keys.pressed[ e.which ] = true;
 /*  if( e.which === 16 ){
     app.camera.speed = app.camera.runSpeed;
@@ -13,33 +13,48 @@ function cameraKeyDownHandler( e ){
     startAnimations();
   }
 */
+  if (e.which == 32 || e.which == 38) {
+     console.log("disparar");
+  }
+  if(e.which == app.keys.LL || e.which == app.keys.RR ){
+    if(app.tank.velocity<0.2){
+      app.tank.velocity*=1.05;
+    }
+  }
+
+  console.log();
 }
 
-function cameraKeyUpHandler( e ){
+function keyUpHandler( e ){
   app.keys.pressed[ e.which ] = false;
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;
   }
 */
+/*  if(e.which == app.keys.LL || e.which == app.keys.RR ){
+    app.tank.velocity=app.tank.inicialVelocity;
+  console.log("asd");
+}*/
 
+  app.tank.velocity=app.tank.inicialVelocity;
 }
 
 function moveTank(){
   var distance = app.elapsed * app.camera.speed;
 //  var camX = 0, camZ = 0;
-  var difx=0.2;
 //  var pitchFactor = 1;//Math.cos( degToRad( app.camera.pitch ) );
   // strafing left
   if( app.keys.pressed[ app.keys.LL ] ){
       if(app.tank.position[0]>-18.69){
-        app.tank.position[0] +=-difx;
+        app.tank.position[0] +=-app.tank.velocity;
       }
   }
   if( app.keys.pressed[ app.keys.RR ] ){
     if(app.tank.position[0]<23.3){
-          app.tank.position[0] += difx;
+          app.tank.position[0] += app.tank.velocity;
     }
   }
-
-
+/*  if( app.keys.pressed[ app.keys.UU ] || app.keys.pressed[ app.keys.SPACE ] ){
+      console.log("sad");
+  }*/
 }

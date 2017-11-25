@@ -5,6 +5,7 @@ function animate() {
     // animate stuff
     app.angle += (90 * app.elapsed) / 1000.0;
     moveTank();
+    moveBubble();
   /*  if( !app.camera.disable ){
       cameraMove();
     }
@@ -12,7 +13,11 @@ function animate() {
       cameraShake();
     }*/
   }
+
   app.lastTime = app.timeNow;
+  if(app.elapsed/1000 < 100000){
+    app.totaltime +=app.elapsed/1000;
+  }
 }
 
 function tick() {
@@ -31,8 +36,8 @@ function webGLStart( meshes ) {
 //  initPointerLock();
   initTextures();
 
-  document.onkeydown = cameraKeyDownHandler;
-  document.onkeyup = cameraKeyUpHandler;
+  document.onkeydown = keyDownHandler;
+  document.onkeyup = keyUpHandler;
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
@@ -45,6 +50,7 @@ window.onload = function(){
       'world':'models/worldBig.obj',
       //'tank':'downModels/source/Tank.obj',
       'tank':'/downModels/karchast-pbt-1b-1964-1967/source/PBT-1b.obj',
+      'bubble':'models/bubble.obj',
       'tunnel_ceiling':'models/tunnel_ceiling.obj',
       'tunnel_walls':'models/tunnel_walls.obj',
       'room_walls': 'models/room_walls.obj',
