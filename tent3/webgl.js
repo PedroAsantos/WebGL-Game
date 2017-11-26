@@ -6,6 +6,7 @@ function animate() {
     app.angle += (90 * app.elapsed) / 1000.0;
     moveTank();
     moveBubble();
+    moveBombs();
   /*  if( !app.camera.disable ){
       cameraMove();
     }
@@ -51,6 +52,7 @@ window.onload = function(){
       //'tank':'downModels/source/Tank.obj',
       'tank':'/downModels/karchast-pbt-1b-1964-1967/source/PBT-1b.obj',
       'bubble':'models/bubble.obj',
+      'bubbleBomb':'models/bubbleBomb.obj',
       'tunnel_ceiling':'models/tunnel_ceiling.obj',
       'tunnel_walls':'models/tunnel_walls.obj',
       'room_walls': 'models/room_walls.obj',

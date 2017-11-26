@@ -13,20 +13,26 @@ function keyDownHandler( e ){
     startAnimations();
   }
 */
-  if (e.which == 32 || e.which == 38) {
-     console.log("disparar");
-  }
+
   if(e.which == app.keys.LL || e.which == app.keys.RR ){
     if(app.tank.velocity<0.2){
       app.tank.velocity*=1.05;
     }
   }
 
-  console.log();
+
 }
 
 function keyUpHandler( e ){
   app.keys.pressed[ e.which ] = false;
+  if (e.which == 32 || e.which == 38) {
+     var dictpos = Object.keys(app.bombs).length.toString();
+     app.bombs[dictpos]=new Object();
+     app.bombs[dictpos].position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
+     app.bombs[dictpos].up = true;
+     app.bombs[dictpos].accelaration = -10.0905;
+
+  }
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;
   }
