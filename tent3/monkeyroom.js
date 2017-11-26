@@ -287,7 +287,7 @@ function drawWorld2(){
 
 
     for (var key in app.bombs) {
-        if (app.bombs.hasOwnProperty(key)) {
+        if (app.bombs.hasOwnProperty(key) && app.bombs[key].visible) {
           mvPushMatrix();
             mat4.translate(app.mvMatrix, app.bombs[key].position);
             mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);

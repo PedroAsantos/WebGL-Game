@@ -26,12 +26,28 @@ function keyDownHandler( e ){
 function keyUpHandler( e ){
   app.keys.pressed[ e.which ] = false;
   if (e.which == 32 || e.which == 38) {
-     var dictpos = Object.keys(app.bombs).length.toString();
+  //    var cont=0;
+      var dictpos;
+    /*  for (var key in app.bubbles) {
+        if (app.bubbles.hasOwnProperty(key)) {
+            if(key!=cont.toString()){
+              dictpos = cont.toString();
+              break;
+            }
+            cont+=1;
+          }
+      }
+      if (typeof dictpos == 'undefined'){
+         dictpos = Object.keys(app.bombs).length.toString();
+      }*/
+    var dictpos = Object.keys(app.bombs).length.toString();
+
      app.bombs[dictpos]=new Object();
      app.bombs[dictpos].position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
      app.bombs[dictpos].up = true;
      app.bombs[dictpos].accelaration = -10.0905;
-
+     app.bombs[dictpos].radius=0.5;
+     app.bombs[dictpos].visible = true;
   }
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;

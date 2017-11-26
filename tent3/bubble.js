@@ -1,6 +1,5 @@
 function moveBubbles(){
-  detectCollision();
-
+  detectCollisionBubbles();
   for (var key in app.bubbles) {
       if (app.bubbles.hasOwnProperty(key)) {
         app.bubbles[key].position[1]+=getBubbley(app.totaltime % 0.1,  app.bubbles[key]);
@@ -42,8 +41,26 @@ function getBubblex(t,bubble){
   }
   return 0;
 }
+function detectCollisionBomb(){
+  for (var bomb=0;bomb < Object.keys(app.bombs).length;bomb++) {
+      for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
+        if (app.bombs[bomb.toString()].visible != false) {
 
-function detectCollision(){
+            if(app.bombs[bomb.toString()].position[0] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
+            app.bubbles[bubble.toString()].position[0] && app.bombs[bomb.toString()].position[0] < app.bubbles[bubble.toString()].position[0] +
+             app.bubbles[bubble.toString()].radius && app.bombs[bomb.toString()].position[1] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
+             app.bubbles[bubble.toString()].position[1] && app.bombs[bomb.toString()].position[1] < app.bubbles[bubble.toString()].position[1] +
+              app.bubbles[bubble.toString()].radius){
+                console.log("PUMBMM!",app.bombs[bomb.toString()].position[0]);
+                app.bombs[bomb.toString()].visible = false;
+            //    delete app.bubbles[bubble.toString()];
+          }
+        }
+
+      }
+  }
+}
+function detectCollisionBubbles(){
   for (var bubble1=0;bubble1 < Object.keys(app.bubbles).length;bubble1++) {
         for (var bubble2=bubble1+1;bubble2<Object.keys(app.bubbles).length;bubble2++) {
                 if(app.bubbles[bubble1.toString()].position[0] + app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius >
@@ -61,10 +78,13 @@ function detectCollision(){
                       var sumRadiiSquared = app.bubbles[bubble1.toString()].radius+app.bubbles[bubble2.toString()].radius;
                       if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
                         console.log("collision");
+
                         app.bubbles[bubble2.toString()].forward= !app.bubbles[bubble2.toString()].forward;
                         app.bubbles[bubble1.toString()].forward= !app.bubbles[bubble1.toString()].forward;
+                      }
                   //      var collisionPointX = ((app.bubbles[bubble1.toString()].position[0] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[0] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
                   //      var collisionPointY = ((app.bubbles[bubble1.toString()].position[1] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[1] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
+
                     /*    if(app.bubbles[bubble1.toString()].position[1] > collisionPointY){
                             app.bubbles[bubble1.toString()].up= !app.bubbles[bubble1.toString()].up;
                         }
@@ -103,8 +123,8 @@ function detectCollision(){
                       // A and B are touching
                       }
                       */
-                }
-              }
+
+                    }
         }
     }
 }
