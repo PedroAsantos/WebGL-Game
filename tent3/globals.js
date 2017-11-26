@@ -44,6 +44,8 @@ var app = {};
   app.bubbles["0"].velocityDown = -4;
   app.bubbles["0"].particleTimeX=0;
   app.bubbles["0"].particleTimeY=0;
+  app.bubbles["0"].visible=true;
+
   app.bubbles["1"] = new Object();
   app.bubbles["1"].position = [-10.5, 2.9, -45.3];
   app.bubbles["1"].accelarationUp = -35.0905;
@@ -58,6 +60,7 @@ var app = {};
   app.bubbles["1"].velocityDown = -4;
   app.bubbles["1"].particleTimeX=0;
   app.bubbles["1"].particleTimeY=0;
+  app.bubbles["1"].visible=true;
 
   app.bubbles["2"] = new Object();
   app.bubbles["2"].position = [5, 2.9, -45.3];
@@ -73,6 +76,7 @@ var app = {};
   app.bubbles["2"].velocityDown = -4;
   app.bubbles["2"].particleTimeX=0;
   app.bubbles["2"].particleTimeY=0;
+  app.bubbles["2"].visible=true;
 
   app.bubbles["3"] = new Object();
   app.bubbles["3"].position = [15, 2.9, -45.3];
@@ -88,6 +92,8 @@ var app = {};
   app.bubbles["3"].velocityDown = -4;
   app.bubbles["3"].particleTimeX=0;
   app.bubbles["3"].particleTimeY=0;
+  app.bubbles["3"].visible=true;
+
 /*  app.bubble = {};
   app.bubble.position= [1.5, 3.9, -45.3];
   app.bubble.accelaration = -60.0905;

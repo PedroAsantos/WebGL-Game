@@ -275,7 +275,7 @@ function drawWorld2(){
     mvPopMatrix();
 */
     for (var key in app.bubbles) {
-        if (app.bubbles.hasOwnProperty(key)) {
+        if (app.bubbles.hasOwnProperty(key) && app.bubbles[key].visible) {
           mvPushMatrix();
             mat4.translate(app.mvMatrix, app.bubbles[key].position);
             mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);

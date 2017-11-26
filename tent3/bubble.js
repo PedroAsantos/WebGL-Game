@@ -44,7 +44,7 @@ function getBubblex(t,bubble){
 function detectCollisionBomb(){
   for (var bomb=0;bomb < Object.keys(app.bombs).length;bomb++) {
       for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
-        if (app.bombs[bomb.toString()].visible != false) {
+        if (app.bombs[bomb.toString()].visible && app.bubbles[bubble.toString()].visible) {
 
             if(app.bombs[bomb.toString()].position[0] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
             app.bubbles[bubble.toString()].position[0] && app.bombs[bomb.toString()].position[0] < app.bubbles[bubble.toString()].position[0] +
@@ -53,7 +53,7 @@ function detectCollisionBomb(){
               app.bubbles[bubble.toString()].radius){
                 console.log("PUMBMM!",app.bombs[bomb.toString()].position[0]);
                 app.bombs[bomb.toString()].visible = false;
-            //    delete app.bubbles[bubble.toString()];
+                app.bubbles[bubble.toString()].visible=false;
           }
         }
 
@@ -63,6 +63,7 @@ function detectCollisionBomb(){
 function detectCollisionBubbles(){
   for (var bubble1=0;bubble1 < Object.keys(app.bubbles).length;bubble1++) {
         for (var bubble2=bubble1+1;bubble2<Object.keys(app.bubbles).length;bubble2++) {
+                if (app.bubbles[bubble1.toString()].visible && app.bubbles[bubble2.toString()].visible) {
                 if(app.bubbles[bubble1.toString()].position[0] + app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius >
                 app.bubbles[bubble2.toString()].position[0] && app.bubbles[bubble1.toString()].position[0] < app.bubbles[bubble2.toString()].position[0] +
                  app.bubbles[bubble2.toString()].radius && app.bubbles[bubble1.toString()].position[1] + app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius >
@@ -123,6 +124,7 @@ function detectCollisionBubbles(){
                       // A and B are touching
                       }
                       */
+                    }
 
                     }
         }
