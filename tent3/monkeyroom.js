@@ -266,13 +266,26 @@ function drawWorld2(){
       gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
       drawObject( app.models.tank, 100, [255.0,255.0,255.0,3.0]);
     mvPopMatrix();
-
+/*
     mvPushMatrix();
       mat4.translate(app.mvMatrix, app.bubble.position);
       mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
       gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
       drawObject( app.models.bubble, 1.0, [255.0,255.0,255.0,3.0]);
     mvPopMatrix();
+*/
+    for (var key in app.bubbles) {
+        if (app.bubbles.hasOwnProperty(key)) {
+          mvPushMatrix();
+            mat4.translate(app.mvMatrix, app.bubbles[key].position);
+            mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
+            gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
+            drawObject( app.models.bubble, 1.0, [255.0,255.0,255.0,3.0]);
+          mvPopMatrix();
+        }
+    }
+
+
     for (var key in app.bombs) {
         if (app.bombs.hasOwnProperty(key)) {
           mvPushMatrix();

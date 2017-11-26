@@ -5,7 +5,7 @@ function animate() {
     // animate stuff
     app.angle += (90 * app.elapsed) / 1000.0;
     moveTank();
-    moveBubble();
+    moveBubbles();
     moveBombs();
   /*  if( !app.camera.disable ){
       cameraMove();

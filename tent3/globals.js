@@ -29,12 +29,43 @@ var app = {};
   app.tank.velocity;
   app.tank.inicialVelocity=0.1;
   //bubble
-  app.bubble = {};
+  app.bubbles = {};
+  app.bubbles["0"] = new Object();
+  app.bubbles["0"].position = [-1.5, 3.9, -45.3];
+  app.bubbles["0"].accelarationUp = -35.0905;
+  app.bubbles["0"].accelarationDown =  9.8905;
+  app.bubbles["0"].up = true
+  app.bubbles["0"].forward = true;
+  app.bubbles["0"].radius = 1.1;
+  app.bubbles["0"].speedx = 3.9;
+  app.bubbles["0"].speedy= 3.9;
+  app.bubbles["0"].mass = 3.9;
+  app.bubbles["0"].velocityUp = 3.5;
+  app.bubbles["0"].velocityDown = -4;
+  app.bubbles["0"].particleTimeX=0;
+  app.bubbles["0"].particleTimeY=0;
+  app.bubbles["1"] = new Object();
+  app.bubbles["1"].position = [1.5, 2.9, -45.3];
+  app.bubbles["1"].accelarationUp = -35.0905;
+  app.bubbles["1"].accelarationDown = 9.8905;
+  app.bubbles["1"].up = true;
+  app.bubbles["1"].forward = true;
+  app.bubbles["1"].radius = 1.1;
+  app.bubbles["1"].speedx = 3.9;
+  app.bubbles["1"].speedy= 3.9;
+  app.bubbles["1"].mass = 3.9;
+  app.bubbles["1"].velocityUp = 3.5;
+  app.bubbles["1"].velocityDown = -4;
+  app.bubbles["1"].particleTimeX=0;
+  app.bubbles["1"].particleTimeY=0;
+
+/*  app.bubble = {};
   app.bubble.position= [1.5, 3.9, -45.3];
   app.bubble.accelaration = -60.0905;
   app.bubble.up = true;
   app.bubble.forward = true;
-  app.bombs = {};
+*/  app.bombs = {};
+
   // camera
   app.camera = {};
   app.camera.position = [0,0.3,3.7];
