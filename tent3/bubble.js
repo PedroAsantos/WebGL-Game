@@ -51,7 +51,6 @@ function detectCollisionBomb(){
              app.bubbles[bubble.toString()].radius && app.bombs[bomb.toString()].position[1] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
              app.bubbles[bubble.toString()].position[1] && app.bombs[bomb.toString()].position[1] < app.bubbles[bubble.toString()].position[1] +
               app.bubbles[bubble.toString()].radius){
-                console.log("PUMBMM!",app.bombs[bomb.toString()].position[0]);
                 app.bombs[bomb.toString()].visible = false;
                 app.bubbles[bubble.toString()].visible=false;
           }
@@ -78,7 +77,6 @@ function detectCollisionBubbles(){
 
                       var sumRadiiSquared = app.bubbles[bubble1.toString()].radius+app.bubbles[bubble2.toString()].radius;
                       if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
-                        console.log("collision");
 
                         app.bubbles[bubble2.toString()].forward= !app.bubbles[bubble2.toString()].forward;
                         app.bubbles[bubble1.toString()].forward= !app.bubbles[bubble1.toString()].forward;
@@ -131,6 +129,53 @@ function detectCollisionBubbles(){
     }
 }
 
+function collisionBubbleTank(){
+  for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
+    if (app.bubbles[bubble.toString()].visible) {
+        var tank= {
+          x: app.tank.position[0],
+          y: app.tank.position[1],
+          w:6,
+          h:5,
+            };
+        tank.x-=4;
+        tank.y-=5;
+        var bubbletemp={
+          x: app.bubbles[bubble.toString()].position[0],
+          y: app.bubbles[bubble.toString()].position[1],
+          r: app.bubbles[bubble.toString()].radius
+        }
+
+        if(tankCollingwithBubble(bubbletemp,tank)){
+          console.log("PUADGMNI1243PJNSPJDNB",app.bubbles[bubble.toString()]);
+          app.bubbles[bubble.toString()].visible=false;
+        }
+    }
+  }
+}
+function tankCollingwithBubble(bubble, tank) {
+    var distX = Math.abs(bubble.x - tank.x - tank.w / 2);
+    var distY = Math.abs(bubble.y - tank.y - tank.h / 2);
+
+    if (distX > (tank.w / 2 + bubble.r)) {
+        return false;
+    }
+    if (distY > (tank.h / 2 + bubble.r)) {
+        return false;
+    }
+
+    if (distX <= (tank.w / 2)) {
+        return true;
+    }
+    if (distY <= (tank.h / 2)) {
+        return true;
+    }
+
+    var dx = distX - tank.w / 2;
+    var dy = distY - tank.h / 2;
+    return (dx * dx + dy * dy <= (bubble.r * bubble.r));
+}
+
 function getBombY(t,bomb){
       if(bomb.position[1]> 3.9){
           bomb.visible=false;
@@ -140,7 +185,7 @@ function getBombY(t,bomb){
       }*/
 
     return 3.9*t+(bomb.accelaration*t*t)/2;
-  
+
 }
 
 function moveBombs(){

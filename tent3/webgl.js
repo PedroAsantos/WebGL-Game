@@ -8,6 +8,7 @@ function animate() {
     moveBubbles();
     moveBombs();
     detectCollisionBomb();
+    collisionBubbleTank();
   /*  if( !app.camera.disable ){
       cameraMove();
     }
