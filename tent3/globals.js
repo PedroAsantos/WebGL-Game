@@ -25,6 +25,7 @@ var app = {};
   }
   // tank
   app.tank = {};
+  app.tank.lastBombTime= 0;
   app.tank.position = [0.0, -6.0, -45.3];
   app.tank.velocity;
   app.tank.inicialVelocity=0.1;

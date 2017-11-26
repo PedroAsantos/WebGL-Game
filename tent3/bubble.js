@@ -133,17 +133,14 @@ function detectCollisionBubbles(){
 
 function getBombY(t,bomb){
       if(bomb.position[1]> 3.9){
-          bomb.up=false;
+          bomb.visible=false;
       }
-      if(bomb.position[1]<-6.3){
+      /*if(bomb.position[1]<-6.3){
           bomb.up=true;
-      }
+      }*/
 
-    if(bomb.up){
-        return 3.9*t+(bomb.accelaration*t*t)/2;
-    }else{
-        return -5*t+(-bomb.accelaration*t*t)/2;
-    }
+    return 3.9*t+(bomb.accelaration*t*t)/2;
+  
 }
 
 function moveBombs(){

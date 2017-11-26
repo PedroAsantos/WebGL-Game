@@ -297,16 +297,6 @@ function drawWorld2(){
         }
     }
 }
-function drawBubleBomb(){
-  mvPushMatrix();
-    mat4.translate(app.mvMatrix, [1.5, 0.0, -45.3]);
-    mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
-  //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
-    gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.5, 1.0, 1.0, 0.1 ) );
-    drawObject( app.models.bubbleBomb, 1.0, [255.0,255.0,255.0,3.0]);
-  mvPopMatrix();
-}
-
 
 
 //app.drawScene = drawMonkeyRoom1;
