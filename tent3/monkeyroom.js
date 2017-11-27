@@ -274,7 +274,7 @@ function drawWorld2(){
     default:
       break;
   }
-  
+
 
 
   gl.uniform3fv( shaderProgram.ambientProduct, mat4.flatten(app.ambientProduct));

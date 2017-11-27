@@ -261,7 +261,7 @@ function generateBubble(){
     bubbletemp.position = [getBubbleRandomXPosition(), 2.9, -45.3];
     bubbletemp.accelarationUp = -35.0905;
     bubbletemp.accelarationDown =  9.8905;
-    bubbletemp.up = true
+    bubbletemp.up = true;
     bubbletemp.forward = true;
     bubbletemp.radius = 1.1;
     bubbletemp.speedx = 3.9;
