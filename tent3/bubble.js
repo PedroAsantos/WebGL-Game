@@ -51,6 +51,10 @@ function detectCollisionBomb(){
              app.bubbles[bubble.toString()].radius && app.bombs[c].position[1] + app.bombs[c].radius + app.bubbles[bubble.toString()].radius >
              app.bubbles[bubble.toString()].position[1] && app.bombs[c].position[1] < app.bubbles[bubble.toString()].position[1] +
               app.bubbles[bubble.toString()].radius){
+                //bomb-bullet collision sound
+                var audio = new Audio('../sounds/collision.wav')
+                audio.play();
+
                 app.bombs[c].visible = false;
                 app.bubbles[bubble.toString()].visible=false;
           }
@@ -146,6 +150,10 @@ function collisionBubbleTank(){
         }
 
         if(tankCollingwithBubble(bubbletemp,tank)){
+          //game over sound
+          var audio = new Audio('../sounds/gameover.wav')
+          audio.play();
+
           app.bubbles[bubble.toString()].visible=false;
         }
     }
