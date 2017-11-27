@@ -9,7 +9,9 @@ function animate() {
     moveBombs();
     detectCollisionBomb();
     deleteBombs();
-  //  collisionBubbleTank();
+    deleteBubbles();
+    collisionBubbleTank();
+    levelUp();
   /*  if( !app.camera.disable ){
       cameraMove();
     }
@@ -43,10 +45,10 @@ function webGLStart( meshes ) {
   document.onkeydown = keyDownHandler;
   document.onkeyup = keyUpHandler;
 
-  //main sound 
-    var audio = new Audio('../sounds/main.wav')
-    audio.loop = true;
-    audio.play();
+  //main sound
+    //var audio = new Audio('../sounds/main.wav')
+    //audio.loop = true;
+    //audio.play();
 
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);

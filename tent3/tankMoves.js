@@ -28,9 +28,10 @@ function keyUpHandler( e ){
   if (e.which == 32 || e.which == 38) {
   //    var cont=0;
       var difTime = (app.timeNow-app.tank.lastBombTime)/1000;
-      if(difTime>1 || difTime==app.timeNow/1000){
+      console.log(app.tank.speedShot,difTime);
+      if(difTime>app.tank.speedShot || difTime==app.timeNow/1000){
 
-        //shooting sound 
+        //shooting sound
         var audio = new Audio('../sounds/shoot.wav')
         audio.play();
 
