@@ -100,7 +100,7 @@ var app = {};
   app.bubble.accelaration = -60.0905;
   app.bubble.up = true;
   app.bubble.forward = true;
-*/  app.bombs = {};
+*/  app.bombs = [];
 
   // camera
   app.camera = {};

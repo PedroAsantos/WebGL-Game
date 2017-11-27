@@ -41,15 +41,24 @@ function keyUpHandler( e ){
           if (typeof dictpos == 'undefined'){
              dictpos = Object.keys(app.bombs).length.toString();
           }*/
-        var dictpos = Object.keys(app.bombs).length.toString();
+      //  var dictpos = Object.keys(app.bombs).length.toString();
+         var bomb  = {};
 
+
+         bomb.position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
+         bomb.up = true;
+         bomb.accelaration = -10.0905;
+         bomb.radius=0.75;
+         bomb.visible = true;
+         app.bombs.push(bomb);
+        /*
          app.bombs[dictpos]=new Object();
          app.bombs[dictpos].position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
          app.bombs[dictpos].up = true;
          app.bombs[dictpos].accelaration = -10.0905;
          app.bombs[dictpos].radius=0.75;
          app.bombs[dictpos].visible = true;
-
+*/
          app.tank.lastBombTime = app.timeNow;
       }
 
@@ -81,7 +90,6 @@ function moveTank(){
           app.tank.position[0] += app.tank.velocity;
     }
   }
-  console.log(app.tank.position);
 /*  if( app.keys.pressed[ app.keys.UU ] || app.keys.pressed[ app.keys.SPACE ] ){
       console.log("sad");
   }*/
