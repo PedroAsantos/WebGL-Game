@@ -29,6 +29,11 @@ function keyUpHandler( e ){
   //    var cont=0;
       var difTime = (app.timeNow-app.tank.lastBombTime)/1000;
       if(difTime>1 || difTime==app.timeNow/1000){
+
+        //shooting sound 
+        var audio = new Audio('../sounds/shoot.wav')
+        audio.play();
+
         /*  for (var key in app.bubbles) {
             if (app.bubbles.hasOwnProperty(key)) {
                 if(key!=cont.toString()){
