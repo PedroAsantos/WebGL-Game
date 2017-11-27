@@ -18,9 +18,21 @@ function keyDownHandler( e ){
       app.tank.velocity*=1.05;
     }
   }
+  if(e.which == app.keys.PD){
+    console.log("PD - before: " + app.zoom);
+    app.zoom *= 1.15;
+    console.log("PD - after: " + app.zoom);
+  }
+  if(e.which == app.keys.PU){
+    console.log("PU - before: " + app.zoom);
+    app.zoom *= 0.85;
+    console.log("PU - after: " + app.zoom);
 
+  }
 
+ // app.keys.pressed [ e. which ] = false;
 }
+
 
 function keyUpHandler( e ){
   app.keys.pressed[ e.which ] = false;
@@ -67,6 +79,9 @@ function keyUpHandler( e ){
       }
 
   }
+
+  
+
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;
   }
@@ -75,9 +90,26 @@ function keyUpHandler( e ){
     app.tank.velocity=app.tank.inicialVelocity;
   console.log("asd");
 }*/
- if(e.which == "67"){
-    app.selectedCamera = (app.selectedCamera + 1)%4;
-  }
-
-  app.tank.velocity=app.tank.inicialVelocity;
+  if(e.which == "67"){
+      app.selectedCamera = (app.selectedCamera + 1)%4;
+      switch(app.selectedCamera){
+        case 0:
+          app.zoom = -1;
+          break;
+        case 1:
+          app.zoom = -20;
+          break;
+        case 2:
+          app.zoom = -10;
+          break;
+        case 3:
+          app.zoom = -20;
+          break;
+        default:
+          app.zoom = -1;
+          break;
+      }
+    }else{
+      app.tank.velocity=app.tank.inicialVelocity;
+    }
 }
