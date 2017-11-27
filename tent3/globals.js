@@ -18,7 +18,7 @@ var app = {};
   // texture holder
   app.textures = {};
   // keyboard key ids
-  app.keys = {  LL: 37, RR: 39 };
+  app.keys = {  LL: 37, RR: 39, PD: 34, PU: 33 };
   app.keys.pressed = {};
   for( key in app.keys ){
     app.keys.pressed[ app.keys[ key ] ] = false;
@@ -111,8 +111,8 @@ var app = {};
 */  app.bombs = [];
 
   // camera
+ 
   app.camera = {};
-  app.selectedCamera = 0;
   app.camera.position = [0,0.3,3.7];
   app.camera.inversePosition = vec3.create();
   app.camera.heading = 0;
@@ -126,6 +126,9 @@ var app = {};
   app.camera.shakeTimer = 0;
   app.camera.shakeFrequency = 100;
   app.camera.shakeAmplitude = 0.01;
+
+  app.selectedCamera = 0;
+  app.zoom = -1;
   // matrices
   app.elapsed = 0;
   app.totaltime = 0;

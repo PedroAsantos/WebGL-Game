@@ -230,7 +230,7 @@ function drawWorld2(){
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.01, 1000.0, app.pMatrix);
 
-  vec3.negate( app.camera.position, app.camera.inversePosition )
+  //vec3.negate( app.camera.position, app.camera.inversePosition )
 
   mat4.identity(app.mvMatrix);
 
@@ -257,21 +257,27 @@ function drawWorld2(){
 
   switch(app.selectedCamera){
     case 0:
+      mat4.translate(app.mvMatrix, [0, 0, app.zoom]);
+      mat4.rotate(app.mvMatrix, degToRad(0), [0, 1, 0]);
       break;
     case 1:
-      mat4.translate(app.mvMatrix, [15, 0, 0]);
+      mat4.translate(app.mvMatrix, [15, 0, app.zoom]);
       mat4.rotate(app.mvMatrix, degToRad(20), [0, 1, 0]);
       break;
     case 2:
-      mat4.translate(app.mvMatrix, [7, -10, -10]);
+      mat4.translate(app.mvMatrix, [5, -10, app.zoom]);
       mat4.rotate(app.mvMatrix, degToRad(5), [0, 1, 0]);
       mat4.rotate(app.mvMatrix, degToRad(20), [1, 0, 0]);
       break;
     case 3:
-      mat4.translate(app.mvMatrix, [-15, -10, -20]);
-      mat4.rotate(app.mvMatrix, degToRad(-20), [0, 1, 0]);
+      if (app.zoom > -10)
+        app.zoom = -10;
+      mat4.translate(app.mvMatrix, [-15, -10, app.zoom]);
+      mat4.rotate(app.mvMatrix, degToRad(-16), [0, 1, 0]);
       break;
     default:
+      mat4.translate(app.mvMatrix, [0, 0, app.zoom]);
+      mat4.rotate(app.mvMatrix, degToRad(0), [0, 1, 0]);
       break;
   }
 
