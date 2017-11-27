@@ -310,12 +310,13 @@ function drawWorld2(){
       drawObject( app.models.bubble, 1.0, [255.0,255.0,255.0,3.0]);
     mvPopMatrix();
 */
-    for (var key in app.bubbles) {
-        if (app.bubbles.hasOwnProperty(key) && app.bubbles[key].visible) {
+    for (var c=0;c<app.bubbles.length;c++) {
+        if (app.bubbles[c].visible) {
           mvPushMatrix();
-            mat4.translate(app.mvMatrix, app.bubbles[key].position);
+            mat4.translate(app.mvMatrix, app.bubbles[c].position);
             mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
-            gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.1, 1.0, 1.0, 3.1 ) );
+            gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( app.bubbleColor.i, app.bubbleColor.r, app.bubbleColor.g, app.bubbleColor.b ) );
+          //gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.05, 100.0 , 0.0,30.9 ));
             drawObject( app.models.bubble, 1.0, [255.0,255.0,255.0,3.0]);
           mvPopMatrix();
         }

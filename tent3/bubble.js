@@ -1,11 +1,10 @@
 function moveBubbles(){
-  detectCollisionBubbles();
-  for (var key in app.bubbles) {
-      if (app.bubbles.hasOwnProperty(key)) {
-        app.bubbles[key].position[1]+=getBubbley(app.totaltime % 0.1,  app.bubbles[key]);
+   detectCollisionBubbles();
+  for (var bubbletemp in app.bubbles) {
+        app.bubbles[bubbletemp].position[1]+=getBubbley(app.totaltime % 0.1,  app.bubbles[bubbletemp]);
   //      console.log(key,  app.bubbles[key].position[1],app.totaltime);
-        app.bubbles[key].position[0]+=getBubblex(app.totaltime % 0.01,  app.bubbles[key]);
-      }
+        app.bubbles[bubbletemp].position[0]+=getBubblex(app.totaltime % 0.01,  app.bubbles[bubbletemp]);
+
   }
 //    detectCollision();
 
@@ -43,20 +42,20 @@ function getBubblex(t,bubble){
 }
 function detectCollisionBomb(){
   for (var c=0;c<app.bombs.length;c++) {
-      for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
-        if (app.bombs[c].visible && app.bubbles[bubble.toString()].visible) {
+      for (var bubble=0;bubble < app.bubbles.length;bubble++) {
+        if (app.bombs[c].visible && app.bubbles[bubble].visible) {
 
-            if(app.bombs[c].position[0] + app.bombs[c].radius + app.bubbles[bubble.toString()].radius >
-            app.bubbles[bubble.toString()].position[0] && app.bombs[c].position[0] < app.bubbles[bubble.toString()].position[0] +
-             app.bubbles[bubble.toString()].radius && app.bombs[c].position[1] + app.bombs[c].radius + app.bubbles[bubble.toString()].radius >
-             app.bubbles[bubble.toString()].position[1] && app.bombs[c].position[1] < app.bubbles[bubble.toString()].position[1] +
-              app.bubbles[bubble.toString()].radius){
+            if(app.bombs[c].position[0] + app.bombs[c].radius + app.bubbles[bubble].radius >
+            app.bubbles[bubble].position[0] && app.bombs[c].position[0] < app.bubbles[bubble].position[0] +
+             app.bubbles[bubble].radius && app.bombs[c].position[1] + app.bombs[c].radius + app.bubbles[bubble].radius >
+             app.bubbles[bubble].position[1] && app.bombs[c].position[1] < app.bubbles[bubble].position[1] +
+              app.bubbles[bubble].radius){
                 //bomb-bullet collision sound
                 var audio = new Audio('../sounds/collision.wav')
                 audio.play();
-
+                app.score+=1;
                 app.bombs[c].visible = false;
-                app.bubbles[bubble.toString()].visible=false;
+                app.bubbles[bubble].visible=false;
           }
         }
 
@@ -64,26 +63,26 @@ function detectCollisionBomb(){
   }
 }
 function detectCollisionBubbles(){
-  for (var bubble1=0;bubble1 < Object.keys(app.bubbles).length;bubble1++) {
-        for (var bubble2=bubble1+1;bubble2<Object.keys(app.bubbles).length;bubble2++) {
-                if (app.bubbles[bubble1.toString()].visible && app.bubbles[bubble2.toString()].visible) {
-                if(app.bubbles[bubble1.toString()].position[0] + app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius >
-                app.bubbles[bubble2.toString()].position[0] && app.bubbles[bubble1.toString()].position[0] < app.bubbles[bubble2.toString()].position[0] +
-                 app.bubbles[bubble2.toString()].radius && app.bubbles[bubble1.toString()].position[1] + app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius >
-                 app.bubbles[bubble2.toString()].position[1] && app.bubbles[bubble1.toString()].position[1] < app.bubbles[bubble2.toString()].position[1] +
-                  app.bubbles[bubble2.toString()].radius){
+  for (var bubble1=0;bubble1 < app.bubbles.length;bubble1++) {
+        for (var bubble2=bubble1+1;bubble2< app.bubbles.length;bubble2++) {
+                if (app.bubbles[bubble1].visible && app.bubbles[bubble2].visible) {
+                  if(app.bubbles[bubble1].position[0] + app.bubbles[bubble1].radius + app.bubbles[bubble2].radius >
+                  app.bubbles[bubble2].position[0] && app.bubbles[bubble1].position[0] < app.bubbles[bubble2].position[0] +
+                   app.bubbles[bubble2].radius && app.bubbles[bubble1].position[1] + app.bubbles[bubble1].radius + app.bubbles[bubble2].radius >
+                   app.bubbles[bubble2].position[1] && app.bubbles[bubble1].position[1] < app.bubbles[bubble2].position[1] +
+                    app.bubbles[bubble2].radius){
                       /* Since multiplications are less computationally expensive than square roots, you should speed up this code
                        by not performing the square root when calculating the distance, and instead square the sum of the radii.
                        The code below shows a sample implementation using this shortcut.
                       */
-                      var deltaXSquared = app.bubbles[bubble1.toString()].position[0]-app.bubbles[bubble2.toString()].position[0];
-                      var deltaYSquared = app.bubbles[bubble1.toString()].position[1]-app.bubbles[bubble2.toString()].position[1];
+                      var deltaXSquared = app.bubbles[bubble1].position[0]-app.bubbles[bubble2].position[0];
+                      var deltaYSquared = app.bubbles[bubble1].position[1]-app.bubbles[bubble2].position[1];
 
-                      var sumRadiiSquared = app.bubbles[bubble1.toString()].radius+app.bubbles[bubble2.toString()].radius;
+                      var sumRadiiSquared = app.bubbles[bubble1].radius+app.bubbles[bubble2].radius;
                       if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
 
-                        app.bubbles[bubble2.toString()].forward= !app.bubbles[bubble2.toString()].forward;
-                        app.bubbles[bubble1.toString()].forward= !app.bubbles[bubble1.toString()].forward;
+                        app.bubbles[bubble2].forward= !app.bubbles[bubble2].forward;
+                        app.bubbles[bubble1].forward= !app.bubbles[bubble1].forward;
                       }
                   //      var collisionPointX = ((app.bubbles[bubble1.toString()].position[0] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[0] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
                   //      var collisionPointY = ((app.bubbles[bubble1.toString()].position[1] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[1] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
@@ -133,8 +132,8 @@ function detectCollisionBubbles(){
     }
 }
 function collisionBubbleTank(){
-  for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
-    if (app.bubbles[bubble.toString()].visible) {
+  for (var bubble=0;bubble <app.bubbles.length;bubble++) {
+    if (app.bubbles[bubble].visible) {
         var tank= {
           x: app.tank.position[0],
           y: app.tank.position[1],
@@ -144,9 +143,9 @@ function collisionBubbleTank(){
         tank.x-=4.5;
         tank.y-=5;
         var bubbletemp={
-          x: app.bubbles[bubble.toString()].position[0],
-          y: app.bubbles[bubble.toString()].position[1],
-          r: app.bubbles[bubble.toString()].radius
+          x: app.bubbles[bubble].position[0],
+          y: app.bubbles[bubble].position[1],
+          r: app.bubbles[bubble].radius
         }
 
         if(tankCollingwithBubble(bubbletemp,tank)){
@@ -154,7 +153,7 @@ function collisionBubbleTank(){
           var audio = new Audio('../sounds/gameover.wav')
           audio.play();
 
-          app.bubbles[bubble.toString()].visible=false;
+          app.bubbles[bubble].visible=false;
         }
     }
   }
@@ -209,5 +208,91 @@ function deleteBombs(){
          app.bombs.splice(c,1);
       }
   }
-
+}
+function deleteBubbles(){
+  for (var c=0;c<app.bubbles.length;c++) {
+      if (app.bubbles[c].visible==false) {
+         app.bubbles.splice(c,1);
+      }
+  }
+}
+function levelUp(){
+    if(app.score > 40){
+      if(app.bubbles.length<4){
+        for(var c = 0;c<6;c++){
+          var bubbletemp = generateBubble();
+          app.bubbleColor.r=100.0;
+          app.bubbleColor.g=0.0;
+        }
+      }
+    }else if(app.score >20){
+      if(app.bubbles.length<2){
+        for(var c = 0;c<6;c++){
+          var bubbletemp = generateBubble();
+          app.bubbleColor.b=30.9;
+        }
+      }
+    }else if(app.score >10){
+      if(app.bubbles.length<4){
+        for(var c = 0;c<3;c++){
+          var bubbletemp = generateBubble();
+          app.tank.speedShot = 0.2;
+          app.bubbleColor.r=10.0;
+        }
+      }
+    }else if(app.score >5){
+      if(app.bubbles.length<3){
+        for(var c = 0;c<2;c++){
+          var bubbletemp = generateBubble();
+          app.bubbleColor.g=10.0;
+        }
+      }
+    }else if(app.score >2){
+      if(app.bubbles.length<2){
+        for(var c = 0;c<2;c++){
+          var bubbletemp = generateBubble();
+        }
+      }
+    }
+}
+function generateBubble(){
+    var bubbletemp = new Object();
+    //verificar se a posição é longe de qq bola. :)
+    bubbletemp.position = [getBubbleRandomXPosition(), 2.9, -45.3];
+    bubbletemp.accelarationUp = -35.0905;
+    bubbletemp.accelarationDown =  9.8905;
+    bubbletemp.up = true
+    bubbletemp.forward = true;
+    bubbletemp.radius = 1.1;
+    bubbletemp.speedx = 3.9;
+    bubbletemp.speedy= 3.9;
+    bubbletemp.mass = 3.9;
+    bubbletemp.velocityUp = 3.5;
+    bubbletemp.velocityDown = -4;
+    bubbletemp.particleTimeX=0;
+    bubbletemp.particleTimeY=0;
+    bubbletemp.visible=true;
+    app.bubbles.push(bubbletemp);
+    return bubbletemp;
+}
+function getBubbleRandomXPosition(){
+  var getnewX=false;
+  var newX=(Math.random() * (23 - (-18)) ) + (-18);
+  while(!getnewX){
+    newX=(Math.random() * (23 - (-18)) ) + (-18);
+    if(distanceCheckBetweenNewBubble(newX)){
+      getnewX=true;
+    }
+  }
+  return newX;
+}
+function distanceCheckBetweenNewBubble(newX){
+  var check=true;
+  for(var c=0;c<app.bubbles.length;c++){
+    if(Math.abs(newX-app.bubbles[c].position[0])<3){
+      check=false;
+      break;
+    }
+  }
+  return check;
 }
