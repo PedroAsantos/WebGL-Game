@@ -230,7 +230,15 @@ function drawWorld2(){
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.01, 1000.0, app.pMatrix);
 
+  vec3.negate( app.camera.position, app.camera.inversePosition )
+
   mat4.identity(app.mvMatrix);
+
+  // camera position and rotations
+  mat4.rotate( app.mvMatrix, degToRad( app.camera.pitch ), [1,0,0] );
+  // account for pitch rotation and light down vector
+  mat4.rotate( app.mvMatrix, degToRad( app.camera.heading ), [0,1,0] );
+  mat4.translate( app.mvMatrix, app.camera.inversePosition );
 
   //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 0, 0]);
   gl.useProgram( shaderProgram );
@@ -246,6 +254,28 @@ function drawWorld2(){
   setUniforms();
 
   vec3.multiply( app.kAmbi, app.ambient_Illumination,app.ambientProduct);
+
+  switch(app.selectedCamera){
+    case 0:
+      break;
+    case 1:
+      mat4.translate(app.mvMatrix, [15, 0, 0]);
+      mat4.rotate(app.mvMatrix, degToRad(20), [0, 1, 0]);
+      break;
+    case 2:
+      mat4.translate(app.mvMatrix, [7, -10, -10]);
+      mat4.rotate(app.mvMatrix, degToRad(5), [0, 1, 0]);
+      mat4.rotate(app.mvMatrix, degToRad(20), [1, 0, 0]);
+      break;
+    case 3:
+      mat4.translate(app.mvMatrix, [-15, -10, -20]);
+      mat4.rotate(app.mvMatrix, degToRad(-20), [0, 1, 0]);
+      break;
+    default:
+      break;
+  }
+  
+
 
   gl.uniform3fv( shaderProgram.ambientProduct, mat4.flatten(app.ambientProduct));
   mvPushMatrix();

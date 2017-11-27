@@ -112,6 +112,7 @@ var app = {};
 
   // camera
   app.camera = {};
+  app.selectedCamera = 0;
   app.camera.position = [0,0.3,3.7];
   app.camera.inversePosition = vec3.create();
   app.camera.heading = 0;
