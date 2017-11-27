@@ -42,20 +42,20 @@ function getBubblex(t,bubble){
   return 0;
 }
 function detectCollisionBomb(){
-  for (var bomb=0;bomb < Object.keys(app.bombs).length;bomb++) {
+  for (var c=0;c<app.bombs.length;c++) {
       for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
-        if (app.bombs[bomb.toString()].visible && app.bubbles[bubble.toString()].visible) {
+        if (app.bombs[c].visible && app.bubbles[bubble.toString()].visible) {
 
-            if(app.bombs[bomb.toString()].position[0] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
-            app.bubbles[bubble.toString()].position[0] && app.bombs[bomb.toString()].position[0] < app.bubbles[bubble.toString()].position[0] +
-             app.bubbles[bubble.toString()].radius && app.bombs[bomb.toString()].position[1] + app.bombs[bomb.toString()].radius + app.bubbles[bubble.toString()].radius >
-             app.bubbles[bubble.toString()].position[1] && app.bombs[bomb.toString()].position[1] < app.bubbles[bubble.toString()].position[1] +
+            if(app.bombs[c].position[0] + app.bombs[c].radius + app.bubbles[bubble.toString()].radius >
+            app.bubbles[bubble.toString()].position[0] && app.bombs[c].position[0] < app.bubbles[bubble.toString()].position[0] +
+             app.bubbles[bubble.toString()].radius && app.bombs[c].position[1] + app.bombs[c].radius + app.bubbles[bubble.toString()].radius >
+             app.bubbles[bubble.toString()].position[1] && app.bombs[c].position[1] < app.bubbles[bubble.toString()].position[1] +
               app.bubbles[bubble.toString()].radius){
-                //bomb-bullet collision sound 
+                //bomb-bullet collision sound
                 var audio = new Audio('../sounds/collision.wav')
                 audio.play();
-                
-                app.bombs[bomb.toString()].visible = false;
+
+                app.bombs[c].visible = false;
                 app.bubbles[bubble.toString()].visible=false;
           }
         }
@@ -150,7 +150,7 @@ function collisionBubbleTank(){
         }
 
         if(tankCollingwithBubble(bubbletemp,tank)){
-          //game over sound 
+          //game over sound
           var audio = new Audio('../sounds/gameover.wav')
           audio.play();
 
@@ -195,10 +195,18 @@ function getBombY(t,bomb){
 }
 
 function moveBombs(){
-  for (var key in app.bombs) {
-      if (app.bombs.hasOwnProperty(key)) {
-        var dif = getBombY(app.totaltime % 0.1,app.bombs[key]);
-        app.bombs[key].position[1] +=dif;
+  for (var c=0;c<app.bombs.length;c++) {
+      if (app.bombs[c].visible) {
+        var dif = getBombY(app.totaltime % 0.1,app.bombs[c]);
+        app.bombs[c].position[1] +=dif;
+      }
+  }
+
+}
+function deleteBombs(){
+  for (var c=0;c<app.bombs.length;c++) {
+      if (app.bombs[c].visible==false) {
+         app.bombs.splice(c,1);
       }
   }
 

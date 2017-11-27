@@ -14,7 +14,6 @@ function moveTank(){
           app.tank.position[0] += app.tank.velocity;
     }
   }
-  console.log(app.tank.position);
 /*  if( app.keys.pressed[ app.keys.UU ] || app.keys.pressed[ app.keys.SPACE ] ){
       console.log("sad");
   }*/

@@ -315,8 +315,18 @@ function drawWorld2(){
         }
     }
 
-
-    for (var key in app.bombs) {
+    for (var c=0;c<app.bombs.length;c++) {
+      //  console.log(key);
+        if (app.bombs[c].visible) {
+          mvPushMatrix();
+            mat4.translate(app.mvMatrix, app.bombs[c].position);
+            mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
+            gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.01, 255.0, 255.0,255.0 ) );
+            drawObject( app.models.bubbleBomb, 0.1, [255.0,255.0,255.0,3.0]);
+          mvPopMatrix();
+        }
+    }
+/*    for (var key in app.bombs) {
         if (app.bombs.hasOwnProperty(key) && app.bombs[key].visible) {
           mvPushMatrix();
             mat4.translate(app.mvMatrix, app.bombs[key].position);
@@ -325,7 +335,7 @@ function drawWorld2(){
             drawObject( app.models.bubbleBomb, 0.1, [255.0,255.0,255.0,3.0]);
           mvPopMatrix();
         }
-    }
+    }*/
 }
 
 

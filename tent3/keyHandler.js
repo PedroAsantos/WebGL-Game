@@ -1,4 +1,3 @@
-
 function keyDownHandler( e ){
   app.keys.pressed[ e.which ] = true;
 /*  if( e.which === 16 ){
@@ -46,24 +45,28 @@ function keyUpHandler( e ){
           if (typeof dictpos == 'undefined'){
              dictpos = Object.keys(app.bombs).length.toString();
           }*/
-        var dictpos = Object.keys(app.bombs).length.toString();
+      //  var dictpos = Object.keys(app.bombs).length.toString();
+         var bomb  = {};
 
+
+         bomb.position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
+         bomb.up = true;
+         bomb.accelaration = -10.0905;
+         bomb.radius=0.75;
+         bomb.visible = true;
+         app.bombs.push(bomb);
+        /*
          app.bombs[dictpos]=new Object();
          app.bombs[dictpos].position = vec3.add(Object.values(app.tank.position),[-1,1,0]);
          app.bombs[dictpos].up = true;
          app.bombs[dictpos].accelaration = -10.0905;
          app.bombs[dictpos].radius=0.75;
          app.bombs[dictpos].visible = true;
-
+*/
          app.tank.lastBombTime = app.timeNow;
       }
 
   }
-  if(e.which == "67"){
-    app.selectedCamera = (app.selectedCamera + 1)%4;
-  }
-
-
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;
   }
@@ -72,6 +75,9 @@ function keyUpHandler( e ){
     app.tank.velocity=app.tank.inicialVelocity;
   console.log("asd");
 }*/
+ if(e.which == "67"){
+    app.selectedCamera = (app.selectedCamera + 1)%4;
+  }
 
   app.tank.velocity=app.tank.inicialVelocity;
 }
