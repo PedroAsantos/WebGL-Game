@@ -217,8 +217,11 @@ function deleteBubbles(){
   }
 }
 function levelUp(){
+    var audio = new Audio('../sounds/levelup.mp3')
     if(app.score > 40){
       if(app.bubbles.length<4){
+        // level up sound
+        audio.play();
         for(var c = 0;c<6;c++){
           var bubbletemp = generateBubble();
           app.bubbleColor.r=100.0;
@@ -227,6 +230,8 @@ function levelUp(){
       }
     }else if(app.score >20){
       if(app.bubbles.length<2){
+        // level up sound
+        audio.play();
         for(var c = 0;c<6;c++){
           var bubbletemp = generateBubble();
           app.bubbleColor.b=30.9;
@@ -234,6 +239,8 @@ function levelUp(){
       }
     }else if(app.score >10){
       if(app.bubbles.length<4){
+        // level up sound
+        audio.play();
         for(var c = 0;c<3;c++){
           var bubbletemp = generateBubble();
           app.tank.speedShot = 0.2;
@@ -242,6 +249,8 @@ function levelUp(){
       }
     }else if(app.score >5){
       if(app.bubbles.length<3){
+         // level up sound
+        audio.play();
         for(var c = 0;c<2;c++){
           var bubbletemp = generateBubble();
           app.bubbleColor.g=10.0;
@@ -249,6 +258,8 @@ function levelUp(){
       }
     }else if(app.score >2){
       if(app.bubbles.length<2){
+        // level up sound
+        audio.play();
         for(var c = 0;c<2;c++){
           var bubbletemp = generateBubble();
         }
