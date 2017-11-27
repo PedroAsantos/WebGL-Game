@@ -152,7 +152,7 @@ function collisionBubbleTank(){
           //game over sound
           var audio = new Audio('../sounds/gameover.wav')
           audio.play();
-
+          app.lifes-=1;
           app.bubbles[bubble].visible=false;
         }
     }
@@ -219,6 +219,7 @@ function deleteBubbles(){
 function levelUp(){
     var audio = new Audio('../sounds/levelup.mp3')
     if(app.score > 40){
+        app.level=5;
       if(app.bubbles.length<4){
         // level up sound
         audio.play();
@@ -229,6 +230,7 @@ function levelUp(){
         }
       }
     }else if(app.score >20){
+        app.level=4;
       if(app.bubbles.length<2){
         // level up sound
         audio.play();
@@ -238,6 +240,7 @@ function levelUp(){
         }
       }
     }else if(app.score >10){
+        app.level=3;
       if(app.bubbles.length<4){
         // level up sound
         audio.play();
@@ -248,6 +251,7 @@ function levelUp(){
         }
       }
     }else if(app.score >5){
+      app.level=2;
       if(app.bubbles.length<3){
          // level up sound
         audio.play();

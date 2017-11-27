@@ -257,8 +257,8 @@ function drawWorld2(){
 
   switch(app.selectedCamera){
     case 0:
-      mat4.translate(app.mvMatrix, [0, 0, app.zoom]);
-      mat4.rotate(app.mvMatrix, degToRad(0), [0, 1, 0]);
+      mat4.translate(app.mvMatrix, [8, 0, app.zoom]);
+      mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
       break;
     case 1:
       mat4.translate(app.mvMatrix, [15, 0, app.zoom]);
@@ -287,7 +287,7 @@ function drawWorld2(){
   mvPushMatrix();
 
     mat4.translate(app.mvMatrix, [1.5, 0.0, -45.3]);
-    mat4.rotate(app.mvMatrix, degToRad(280), [0, 1, 0]);
+    mat4.rotate(app.mvMatrix, degToRad(270), [0, 1, 0]);
   //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
     gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity(0.05, 0.0, 5.0, 5.0 ) );
     drawObject( app.models.world, 1.0, [255.0,255.0,255.0,3.0]);
@@ -297,7 +297,7 @@ function drawWorld2(){
     mvPushMatrix();
 
       mat4.translate(app.mvMatrix, app.tank.position);
-      mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
+    //  mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
     //  mat4.rotate(app.mvMatrix, degToRad(app.angle), [1, 1, 0]);
       gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.01, 4.0, 1.0, 0.1 ) );
       drawObject( app.models.tank, 100, [255.0,255.0,255.0,3.0]);

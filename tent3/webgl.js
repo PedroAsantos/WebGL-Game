@@ -30,8 +30,21 @@ function tick() {
   requestAnimFrame(tick);
   app.drawScene();
   animate();
+  updateHtml();
 }
 
+function updateHtml(){
+
+  document.getElementById("score").innerHTML = "Score:"+ app.score;
+  document.getElementById("level").innerHTML = "Level:" + app.level;
+  var heartLifes="";
+  for(var c=0;c<app.lifes;c++){
+    heartLifes+=" <3"
+  }
+  console.log(heartLifes);
+  document.getElementById("lifes").innerHTML = "Lifes:" + heartLifes;
+
+}
 function webGLStart( meshes ) {
   app.meshes = meshes;
   canvas = document.getElementById("mycanvas");

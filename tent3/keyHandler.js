@@ -41,7 +41,7 @@ function keyUpHandler( e ){
       var difTime = (app.timeNow-app.tank.lastBombTime)/1000;
       if(difTime>1 || difTime==app.timeNow/1000){
 
-        //shooting sound 
+        //shooting sound
         var audio = new Audio('../sounds/shoot.wav')
         audio.play();
 
@@ -80,7 +80,7 @@ function keyUpHandler( e ){
 
   }
 
-  
+
 
 /*  if( e.which == 16 ){
     app.camera.speed = app.camera.walkSpeed;

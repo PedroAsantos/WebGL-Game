@@ -25,6 +25,8 @@ var app = {};
   }
   //socre
   app.score = 0;
+  app.level = 1;
+  app.lifes=3;
   // tank
   app.tank = {};
   app.tank.lastBombTime= 0;
@@ -111,7 +113,7 @@ var app = {};
 */  app.bombs = [];
 
   // camera
- 
+
   app.camera = {};
   app.camera.position = [0,0.3,3.7];
   app.camera.inversePosition = vec3.create();
