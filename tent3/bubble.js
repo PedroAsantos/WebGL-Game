@@ -128,7 +128,6 @@ function detectCollisionBubbles(){
         }
     }
 }
-
 function collisionBubbleTank(){
   for (var bubble=0;bubble < Object.keys(app.bubbles).length;bubble++) {
     if (app.bubbles[bubble.toString()].visible) {
@@ -138,7 +137,7 @@ function collisionBubbleTank(){
           w:6,
           h:5,
             };
-        tank.x-=4;
+        tank.x-=4.5;
         tank.y-=5;
         var bubbletemp={
           x: app.bubbles[bubble.toString()].position[0],
@@ -147,7 +146,6 @@ function collisionBubbleTank(){
         }
 
         if(tankCollingwithBubble(bubbletemp,tank)){
-          console.log("PUADGMNI1243PJNSPJDNB",app.bubbles[bubble.toString()]);
           app.bubbles[bubble.toString()].visible=false;
         }
     }
