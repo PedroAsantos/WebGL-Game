@@ -52,8 +52,8 @@ function detectCollisionBomb(){
                 var deltaXSquared = app.bubbles[bubble].position[0]-app.bombs[c].position[0];
                 var deltaYSquared = app.bubbles[bubble].position[1]-app.bombs[c].position[1];
 
-                var sumRadiiSquared = app.bubbles[bubble].radius+app.bombs[c].radius;
-                if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
+                var sumRadiusSquared = app.bubbles[bubble].radius+app.bombs[c].radius;
+                if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiusSquared*sumRadiusSquared){
                   //bomb-bullet collision sound
                   var audio = new Audio('../sounds/collision.wav')
                   audio.play();
@@ -81,8 +81,8 @@ function detectCollisionBubbles(){
                       var deltaXSquared = app.bubbles[bubble1].position[0]-app.bubbles[bubble2].position[0];
                       var deltaYSquared = app.bubbles[bubble1].position[1]-app.bubbles[bubble2].position[1];
 
-                      var sumRadiiSquared = app.bubbles[bubble1].radius+app.bubbles[bubble2].radius;
-                      if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
+                      var sumRadiusSquared = app.bubbles[bubble1].radius+app.bubbles[bubble2].radius;
+                      if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiusSquared*sumRadiusSquared){
 
                         app.bubbles[bubble2].forward= !app.bubbles[bubble2].forward;
                         app.bubbles[bubble1].forward= !app.bubbles[bubble1].forward;
