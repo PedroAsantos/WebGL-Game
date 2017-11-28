@@ -142,7 +142,7 @@ function initTexture( object, url) {
 }
 
 function initTextures(){
-  initTexture( app.models.tank,  "downModels/source/Tank_dif.jpg");
+//  initTexture( app.models.tank,  "/source/Tank_dif.jpg");
 
 }
 
