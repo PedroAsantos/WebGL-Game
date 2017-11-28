@@ -1,9 +1,7 @@
 function animate() {
   app.timeNow = new Date().getTime();
   app.elapsed = app.timeNow - app.lastTime;
-  if (app.lastTime != 0) {
-    // animate stuff
-    app.angle += (90 * app.elapsed) / 1000.0;
+  if (app.lastTime != 0 && app.lifes!=0) {
     moveTank();
     moveBubbles();
     moveBombs();
@@ -12,12 +10,6 @@ function animate() {
     deleteBubbles();
     collisionBubbleTank();
     levelUp();
-  /*  if( !app.camera.disable ){
-      cameraMove();
-    }
-    if( app.camera.shake ){
-      cameraShake();
-    }*/
   }
 
   app.lastTime = app.timeNow;
@@ -41,12 +33,23 @@ function updateHtml(){
   for(var c=0;c<app.lifes;c++){
     heartLifes+=" <3"
   }
-  console.log(heartLifes);
   document.getElementById("lifes").innerHTML = "Lifes:" + heartLifes;
 
 }
-function webGLStart( meshes ) {
-  app.meshes = meshes;
+function Restart(){
+  restartGlobalVar();
+  webGLStart();
+
+}
+function start(){
+  if(!app.tick){
+      app.tick=true;
+      tick();
+  }
+
+}
+function webGLStart() {
+
   canvas = document.getElementById("mycanvas");
   initGL(canvas);
   initShaders();
@@ -59,17 +62,22 @@ function webGLStart( meshes ) {
   document.onkeyup = keyUpHandler;
 
   //main sound
-    //var audio = new Audio('../sounds/main.wav')
-    //audio.loop = true;
-    //audio.play();
+    var audio = new Audio('../sounds/main.wav')
+    audio.loop = true;
+    audio.play();
 
-    tick();
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  gl.enable(gl.DEPTH_TEST);
+  //  tick();
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.enable(gl.DEPTH_TEST);
 
 
 }
 
+function auxWebGlStart(meshes){
+    app.meshes = meshes;
+    webGLStart();
+
+}
 window.onload = function(){
   OBJ.downloadMeshes({
       'world':'models/worldBig.obj',
@@ -79,6 +87,6 @@ window.onload = function(){
       'bubbleBomb':'models/bubbleBomb.obj',
 
     },
-    webGLStart
+    auxWebGlStart
   );
 };

@@ -6,7 +6,7 @@ function moveBubbles(){
         app.bubbles[bubbletemp].position[0]+=getBubblex(app.totaltime % 0.01,  app.bubbles[bubbletemp]);
 
   }
-//    detectCollision();
+//    detectCollisionBubbles();
 
 }
 
@@ -29,7 +29,7 @@ function getBubblex(t,bubble){
   if(bubble.position[0]> 25){
     bubble.forward=false;
   }
-  if(bubble.position[0]<-23.8){
+  if(bubble.position[0]<-23.4){
       bubble.forward=true;
   }
 
@@ -50,12 +50,20 @@ function detectCollisionBomb(){
              app.bubbles[bubble].radius && app.bombs[c].position[1] + app.bombs[c].radius + app.bubbles[bubble].radius >
              app.bubbles[bubble].position[1] && app.bombs[c].position[1] < app.bubbles[bubble].position[1] +
               app.bubbles[bubble].radius){
-                //bomb-bullet collision sound
-                var audio = new Audio('../sounds/collision.wav')
-                audio.play();
-                app.score+=1;
-                app.bombs[c].visible = false;
-                app.bubbles[bubble].visible=false;
+
+                var deltaXSquared = app.bubbles[bubble].position[0]-app.bombs[c].position[0];
+                var deltaYSquared = app.bubbles[bubble].position[1]-app.bombs[c].position[1];
+
+                var sumRadiiSquared = app.bubbles[bubble].radius+app.bombs[c].radius;
+                if(deltaXSquared*deltaXSquared + deltaYSquared*deltaYSquared <= sumRadiiSquared*sumRadiiSquared){
+                  //bomb-bullet collision sound
+                  var audio = new Audio('../sounds/collision.wav')
+                  audio.play();
+                  app.score+=1;
+                  app.bombs[c].visible = false;
+                  app.bubbles[bubble].visible=false;
+                }
+
           }
         }
 
@@ -131,6 +139,7 @@ function detectCollisionBubbles(){
         }
     }
 }
+
 function collisionBubbleTank(){
   for (var bubble=0;bubble <app.bubbles.length;bubble++) {
     if (app.bubbles[bubble].visible) {
@@ -248,6 +257,7 @@ function levelUp(){
           var bubbletemp = generateBubble();
           app.tank.speedShot = 0.2;
           app.bubbleColor.r=10.0;
+          document.getElementById("reloadTime").innerHTML = "New Fire Rate Time!";
         }
       }
     }else if(app.score >5){
@@ -268,6 +278,12 @@ function levelUp(){
           var bubbletemp = generateBubble();
         }
       }
+    }else if(app.score >= 0){
+        if(app.bubbles.length<2){
+          for(var c = 0;c<2;c++){
+            var bubbletemp = generateBubble();
+          }
+        }
     }
 }
 function generateBubble(){

@@ -8,6 +8,8 @@ var gl;
 var canvas;
 // application var holder
 var app = {};
+  //function tick is on?
+  app.tick = false;
   app.angle = 0;
   // mesh holder
   app.meshes = {};

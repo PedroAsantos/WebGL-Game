@@ -9,7 +9,7 @@ function moveTank(){
       }
   }
   if( app.keys.pressed[ app.keys.RR ] ){
-    if(app.tank.position[0]<23.3){
+    if(app.tank.position[0]<22.9){
           app.tank.position[0] += app.tank.velocity;
     }
   }

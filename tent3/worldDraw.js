@@ -106,18 +106,7 @@ function drawWorld(){
           mvPopMatrix();
         }
     }
-/*    for (var key in app.bombs) {
-        if (app.bombs.hasOwnProperty(key) && app.bombs[key].visible) {
-          mvPushMatrix();
-            mat4.translate(app.mvMatrix, app.bombs[key].position);
-            mat4.rotate(app.mvMatrix, degToRad(10), [0, 1, 0]);
-            gl.uniform3fv( shaderProgram.lightSpecularColor, lightIntesity( 0.01, 255.0, 255.0,255.0 ) );
-            drawObject( app.models.bubbleBomb, 0.1, [255.0,255.0,255.0,3.0]);
-          mvPopMatrix();
-        }
-    }*/
+
 }
 
-
-//app.drawScene = drawMonkeyRoom1;
 app.drawScene = drawWorld;

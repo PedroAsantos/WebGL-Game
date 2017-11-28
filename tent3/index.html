@@ -169,7 +169,6 @@
 
   <script type='text/javascript' src='webgl-obj-loader.js'></script>
   <script type='text/javascript' src='globals.js'></script>
-  <script type='text/javascript' src='keyframes.js'></script>
   <script type='text/javascript' src='helpers.js'></script>
   <script type='text/javascript' src='initialize.js'></script>
   <script type='text/javascript' src='keyHandler.js'></script>
@@ -192,6 +191,11 @@
     right: 0;
   }
   body {background-color: rgb(70, 70, 70);}
+  p {
+    color:#F2F2F2;
+    font-family:courier;
+    font-size: 15px;
+  }
   .score{
     margin: 0 auto;
     bottom: 0;
@@ -211,6 +215,12 @@
   .confDiv{
     margin:20px;
   }
+  #reloadTime{
+    font-family:courier;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 100px;
+  }
   </style>
 </head>
 
@@ -225,10 +235,21 @@
       </div>-->
 
       <div class="confDiv">
-        <button onclick="tick()" class="mdl-button mdl-js-button mdl-button--raised" style="color:#F2F2F2;font-family:courier;font-size: 20px; font-weight:bold;">
+        <button onclick="start()" class="mdl-button mdl-js-button mdl-button--raised" style="color:#F2F2F2;font-family:courier;font-size: 20px; font-weight:bold;">
           Start
         </button>
+        <button onclick="Restart()" class="mdl-button mdl-js-button mdl-button--raised" style="color:#F2F2F2;font-family:courier;font-size: 20px; font-weight:bold;">
+          Restart
+        </button>
         <h6 style="color:#F2F2F2;font-family:courier;font-size: 20px;"> Keys:</h3>
+        <p>Left Arrow: Move Tank Left</p>
+        <p>Right Arrow: Move Tank Right</p>
+        <p>Up Arrow/Space: Shot </p>
+        <p>c:Change Camera</p>
+        <p>pgup:Zoom In</p>
+        <p>pgdn:Zoom Out</p>
+
+        <h2 id="reloadTime"></h2>
 
       </div>
 
