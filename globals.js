@@ -27,7 +27,7 @@ var app = {};
   }
   //sound
   app.audio={};
-  app.audio.epic=new Audio('https://pedroasantos.github.io/sounds/epic.wav');
+  app.audio.epic=new Audio('../sounds/epic.wav');
   app.audio.main=new Audio('../sounds/main.wav');
   //score
   app.score = 0;
