@@ -25,7 +25,11 @@ var app = {};
   for( key in app.keys ){
     app.keys.pressed[ app.keys[ key ] ] = false;
   }
-  //socre
+  //sound
+  app.audio={};
+  app.audio.epic=new Audio('../sounds/epic.wav');
+  app.audio.main=new Audio('../sounds/main.wav');
+  //score
   app.score = 0;
   app.level = 1;
   app.lifes=3;

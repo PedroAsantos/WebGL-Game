@@ -39,12 +39,17 @@ function updateHtml(){
 function Restart(){
   restartGlobalVar();
   webGLStart();
-
+  app.audio.main.loop = true;
+  app.audio.main.play();
 }
 function start(){
+  app.audio.epic.pause();
   if(!app.tick){
       app.tick=true;
       tick();
+      //mainsound
+      app.audio.main.loop = true;
+      app.audio.main.play();
   }
 
 }
@@ -61,10 +66,6 @@ function webGLStart() {
   document.onkeydown = keyDownHandler;
   document.onkeyup = keyUpHandler;
 
-  //main sound
-    var audio = new Audio('../sounds/main.wav')
-    audio.loop = true;
-    audio.play();
 
   //  tick();
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -76,6 +77,8 @@ function webGLStart() {
 function auxWebGlStart(meshes){
     app.meshes = meshes;
     webGLStart();
+    //epic sound
+    app.audio.epic.play();
 
 }
 window.onload = function(){
