@@ -114,20 +114,7 @@ var app = {};
 
   // camera
 
-  app.camera = {};
-  app.camera.position = [0,0.3,3.7];
-  app.camera.inversePosition = vec3.create();
-  app.camera.heading = 0;
-  app.camera.pitch = 0;
-  app.camera.walkSpeed = 0.001;
-  app.camera.runSpeed = 0.002;
-  app.camera.speed = app.camera.walkSpeed;
-  app.camera.sensitivity = 10;
-  app.camera.disable = false;
-  app.camera.shake = false;
-  app.camera.shakeTimer = 0;
-  app.camera.shakeFrequency = 100;
-  app.camera.shakeAmplitude = 0.01;
+
 
   app.selectedCamera = 0;
   app.zoom = -1;
@@ -158,43 +145,6 @@ var app = {};
   app.elapsed = 0;
   // which function to use to draw
   app.drawScene;
-  app.scenechange = false;
-  // particles
-  app.particles = {};
-  app.particles.min = [-0.5,0.3,-0.1];
-  app.particles.max = [0.5,0.7,0.1];
-  app.particles.maxVector = 1;
-  app.particles.TTL = 1;
-  app.particles.rate = 1000; // current time rate ( real time vs slow mo )
-  // monkey
-  app.monkey = {};
-  app.monkey.position = [0,0,0]
-  // boulder
-  app.boulder = {};
-  app.boulder.position = [0,0.245,-2.21];
-  app.boulder.rotation = 0;
-  // animations
-  app.animate = false;
-  app.animations = {};
-  app.animations.currentAnimation = 0;
-    // move to the monkey
-    app.animations.moveToMonkeyTime = 2; // framelength in seconds
-    app.animations.moveToMonkeyStartTime = 0;
-    app.animations.moveToMonkeyStartPosition = [];
-    app.animations.moveToMonkeyStartHeadingPitch = [];
-    app.animations.moveToMonkeyEndPosition = [0,0.3,0.3];
-    // take the monkey
-    app.animations.takeMonkeyTime = 1; // framelength in seconds
-    app.animations.takeMonkeyStartTime = 0;
-    app.animations.takeMonkeyStartPosition = [];
-    app.animations.takeMonkeyEndPosition = [0,0,-0.2];
-    // walls
-    app.breakWalls = false;
-    app.wallScale = 1;
-    app.animations.boulderCrashStartTime = 0;
-    // turn around
-    app.animations.turnAroundTime = 1; // framelength in seconds
-    app.animations.turnAroundStartTime = 0;
 
 var shaderProgram;
 var particleShaderProgram;

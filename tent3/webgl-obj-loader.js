@@ -93,18 +93,18 @@
     unpacked.index = 0;
     // array of lines separated by the newline
     var lines = objectData.split('\n');
-    
+
     var VERTEX_RE = /^v\s/;
     var NORMAL_RE = /^vn\s/;
     var TEXTURE_RE = /^vt\s/;
     var FACE_RE = /^f\s/;
     var WHITESPACE_RE = /\s+/;
-    
+
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
       var elements = line.split(WHITESPACE_RE);
       elements.shift();
-      
+
       if (VERTEX_RE.test(line)) {
         // if this is a vertex
         verts.push.apply(verts, elements);

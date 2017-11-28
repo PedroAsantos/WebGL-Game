@@ -63,11 +63,11 @@ function webGLStart( meshes ) {
     //audio.loop = true;
     //audio.play();
 
-
+    tick();
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
 
-  tick();
+
 }
 
 window.onload = function(){
@@ -77,18 +77,7 @@ window.onload = function(){
       'tank':'/downModels/karchast-pbt-1b-1964-1967/source/PBT-1b.obj',
       'bubble':'models/bubble.obj',
       'bubbleBomb':'models/bubbleBomb.obj',
-      'tunnel_ceiling':'models/tunnel_ceiling.obj',
-      'tunnel_walls':'models/tunnel_walls.obj',
-      'room_walls': 'models/room_walls.obj',
-      'room_ceiling': 'models/room_ceiling.obj',
-      'room_floor': 'models/room_floor.obj',
-      'room_tunnel_ceiling': 'models/room_tunnel_ceiling.obj',
-      'room_tunnel_walls': 'models/room_tunnel_walls.obj',
-      'room_wall_broken': 'models/room_wall_broken.obj',
-      'room_wall_unbroken': 'models/room_wall_unbroken.obj',
-      'suzanne': 'models/suzanne.obj',
-      'pedestal': 'models/pedestal.obj',
-      'boulder': 'models/boulder.obj',
+
     },
     webGLStart
   );

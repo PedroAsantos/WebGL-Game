@@ -145,16 +145,6 @@ function initTextures(){
   initTexture( app.models.world,  "textures/stony_ground.jpg");
   initTexture( app.models.tank,  "downModels/source/Tank_dif.jpg");
 
-  initTexture( app.models.room_ceiling, "textures/stony_ground.jpg" );
-  initTexture( app.models.room_walls, "textures/stone_wall.png" );
-  initTexture( app.models.room_floor, "textures/room_floor.jpg" );
-  app.models.room_tunnel_walls.texture = app.models.room_walls.texture;
-  app.models.room_wall_broken.texture = app.models.room_walls.texture;
-  app.models.room_wall_unbroken.texture = app.models.room_walls.texture;
-  app.models.room_tunnel_ceiling.texture = app.models.room_ceiling.texture;
-  app.models.boulder.texture = app.models.room_ceiling.texture;
-  initTexture( app.particles, "textures/smoke.png" );
-
 }
 
 function initBuffers() {
@@ -168,5 +158,5 @@ function initBuffers() {
   }
 //  app.models.skylight = {};
 //  app.models.skylight.mesh = app.models.room_floor.mesh;
-  createParticles( 100000, app.particles.min, app.particles.max, app.particles.maxVector, app.particles.TTL, app.particles );
+//  createParticles( 100000, app.particles.min, app.particles.max, app.particles.maxVector, app.particles.TTL, app.particles );
 }

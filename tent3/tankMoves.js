@@ -1,6 +1,5 @@
 
 function moveTank(){
-  var distance = app.elapsed * app.camera.speed;
 //  var camX = 0, camZ = 0;
 //  var pitchFactor = 1;//Math.cos( degToRad( app.camera.pitch ) );
   // strafing left
