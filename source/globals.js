@@ -37,7 +37,7 @@ var app = {};
   app.tank = {};
   app.tank.lastBombTime= 0;
   app.tank.position = [0.0, -6.0, -45.3];
-  app.tank.velocity;
+  app.tank.velocity=0.1;
   app.tank.inicialVelocity=0.1;
   app.tank.speedShot = 1;
   //bubble
