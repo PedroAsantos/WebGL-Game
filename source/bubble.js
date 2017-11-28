@@ -164,9 +164,11 @@ function collisionBubbleTank(){
           app.lifes-=1;
 
           if(app.lifes==0){
+
             app.audio.main.pause();
             var audio = new Audio('../sounds/nooooooooohhhhh.wav')
             audio.play();
+            document.getElementById("reloadTime").innerHTML = "";
           }
           app.bubbles[bubble].visible=false;
         }
