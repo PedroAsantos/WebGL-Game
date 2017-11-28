@@ -2,11 +2,9 @@ function moveBubbles(){
    detectCollisionBubbles();
   for (var bubbletemp in app.bubbles) {
         app.bubbles[bubbletemp].position[1]+=getBubbley(app.totaltime % 0.1,  app.bubbles[bubbletemp]);
-  //      console.log(key,  app.bubbles[key].position[1],app.totaltime);
         app.bubbles[bubbletemp].position[0]+=getBubblex(app.totaltime % 0.01,  app.bubbles[bubbletemp]);
-
   }
-//    detectCollisionBubbles();
+
 
 }
 
@@ -79,10 +77,7 @@ function detectCollisionBubbles(){
                    app.bubbles[bubble2].radius && app.bubbles[bubble1].position[1] + app.bubbles[bubble1].radius + app.bubbles[bubble2].radius >
                    app.bubbles[bubble2].position[1] && app.bubbles[bubble1].position[1] < app.bubbles[bubble2].position[1] +
                     app.bubbles[bubble2].radius){
-                      /* Since multiplications are less computationally expensive than square roots, you should speed up this code
-                       by not performing the square root when calculating the distance, and instead square the sum of the radii.
-                       The code below shows a sample implementation using this shortcut.
-                      */
+
                       var deltaXSquared = app.bubbles[bubble1].position[0]-app.bubbles[bubble2].position[0];
                       var deltaYSquared = app.bubbles[bubble1].position[1]-app.bubbles[bubble2].position[1];
 
@@ -95,44 +90,6 @@ function detectCollisionBubbles(){
                   //      var collisionPointX = ((app.bubbles[bubble1.toString()].position[0] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[0] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
                   //      var collisionPointY = ((app.bubbles[bubble1.toString()].position[1] * app.bubbles[bubble2.toString()].radius) + (app.bubbles[bubble2.toString()].position[1] * app.bubbles[bubble1.toString()].radius)) / (app.bubbles[bubble1.toString()].radius + app.bubbles[bubble2.toString()].radius);
 
-                    /*    if(app.bubbles[bubble1.toString()].position[1] > collisionPointY){
-                            app.bubbles[bubble1.toString()].up= !app.bubbles[bubble1.toString()].up;
-                        }
-                        if(app.bubbles[bubble2.toString()].position[1] > collisionPointY){
-                            app.bubbles[bubble2.toString()].up= !app.bubbles[bubble1.toString()].up;
-                        }
-                        if(app.bubbles[bubble1.toString()].position[0] < collisionPointX){
-                            app.bubbles[bubble1.toString()].forward= !app.bubbles[bubble1.toString()].forward;
-                        }
-                        if(app.bubbles[bubble2.toString()].position[0] < collisionPointX){
-                            app.bubbles[bubble2.toString()].forward= !app.bubbles[bubble1.toString()].forward;
-                        }
-                      */  // bubbleA and bubbleB are touching
-                  /*     var newVelXBubble1 = (app.bubbles[bubble1.toString()].speedx * (app.bubbles[bubble1.toString()].mass - app.bubbles[bubble2.toString()].mass) +
-                        (2 * app.bubbles[bubble2.toString()].mass * app.bubbles[bubble2.toString()].speedx)) / (app.bubbles[bubble1.toString()].mass + app.bubbles[bubble2.toString()].mass);
-                        var newVelYBubble1 = (app.bubbles[bubble1.toString()].speedy * (app.bubbles[bubble1.toString()].mass - app.bubbles[bubble2.toString()].mass) +
-                        (2 * app.bubbles[bubble2.toString()].mass * app.bubbles[bubble2.toString()].speedy))/ (app.bubbles[bubble1.toString()].mass + app.bubbles[bubble2.toString()].mass);
-
-                        var newVelXBubbl2 = (app.bubbles[bubble2.toString()].speedx * (app.bubbles[bubble2.toString()].mass - app.bubbles[bubble1.toString()].mass) +
-                        (2 * app.bubbles[bubble1.toString()].mass * app.bubbles[bubble1.toString()].speedx))/ (app.bubbles[bubble1.toString()].mass + app.bubbles[bubble2.toString()].mass);
-                        var newVelYBubble2 = (app.bubbles[bubble2.toString()].speedy * (app.bubbles[bubble2.toString()].mass - app.bubbles[bubble1.toString()].mass) +
-                        (2 * app.bubbles[bubble1.toString()].mass * app.bubbles[bubble1.toString()].speedy))/ (app.bubbles[bubble1.toString()].mass + app.bubbles[bubble2.toString()].mass);
-*/
-
-                      /*
-                      double deltaXSquared = A.x - B.x; // calc. delta X
-                      deltaXSquared *= deltaXSquared; // square delta X
-                      double deltaYSquared = A.y - B.y; // calc. delta Y
-                      deltaYSquared *= deltaYSquared; // square delta Y
-
-                      // Calculate the sum of the radii, then square it
-                      double sumRadiiSquared = A.radius + B.radius;
-                      sumRadiiSquared *= sumRadiiSquared;
-
-                      if(deltaXSquared + deltaYSquared <= sumRadiiSquared){
-                      // A and B are touching
-                      }
-                      */
                     }
 
                     }
@@ -202,9 +159,7 @@ function getBombY(t,bomb){
       if(bomb.position[1]> 3.9){
           bomb.visible=false;
       }
-      /*if(bomb.position[1]<-6.3){
-          bomb.up=true;
-      }*/
+
 
     return 3.9*t+(bomb.accelaration*t*t)/2;
 

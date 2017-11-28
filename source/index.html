@@ -80,8 +80,7 @@
       Pointlight foglight = Pointlight(vec3(1000.0, 1000.0, -10000.0), //alterado
                                        2.0);
       vec2 lights = vec2(0.0, 0.0);
-    //  lights += spotlight(ceilinglight, vPosition.xyz, vTransformedNormal);
-    //  lights += float(uHasFlashlight) * spotlight(flashlight, vPosition.xyz, vTransformedNormal);
+
       lights += pointlight(foglight, vPosition.xyz, vTransformedNormal);
 
       vec4 color = mix(uColor, texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t)), float(uHasTexure));
@@ -263,18 +262,3 @@
 </body>
 
 </html>
-<!-- asfsda
-  <div>
-    <div class="row">
-      <canvas id="mycanvas" style="border: 15px solid #AAAAAA;" width="1300" height="800"></canvas><br />
-    </div>
-    <div  >
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2" style="text-align:center">
-      <p>Score:</p>
-      </div>
-    </div>
-
-  </div>
--->

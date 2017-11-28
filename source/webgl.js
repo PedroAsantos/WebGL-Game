@@ -59,18 +59,13 @@ function webGLStart() {
   initGL(canvas);
   initShaders();
   initBuffers();
-//  initTunnel();
-//  initPointerLock();
   initTextures();
 
   document.onkeydown = keyDownHandler;
   document.onkeyup = keyUpHandler;
 
-
-  //  tick();
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.enable(gl.DEPTH_TEST);
-
 
 }
 
@@ -84,11 +79,9 @@ function auxWebGlStart(meshes){
 window.onload = function(){
   OBJ.downloadMeshes({
       'world':'models/worldBig.obj',
-      //'tank':'downModels/source/Tank.obj',
-      'tank':'/downModels/karchast-pbt-1b-1964-1967/source/PBT-1b.obj',
+      'tank':'/models/PBT-1b.obj',
       'bubble':'models/bubble.obj',
       'bubbleBomb':'models/bubbleBomb.obj',
-
     },
     auxWebGlStart
   );

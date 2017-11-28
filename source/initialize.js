@@ -263,12 +263,8 @@ function restartGlobalVar(){
   app.bubbles[3].particleTimeY=0;
   app.bubbles[3].visible=true;
 
-/*  app.bubble = {};
-  app.bubble.position= [1.5, 3.9, -45.3];
-  app.bubble.accelaration = -60.0905;
-  app.bubble.up = true;
-  app.bubble.forward = true;
-*/  app.bombs = [];
+
+  app.bombs = [];
   // camera
   app.selectedCamera = 0;
   app.zoom = -1;
@@ -302,5 +298,4 @@ function restartGlobalVar(){
   shaderProgram;
   particleShaderProgram;
   light = 0;
-  angle = 0;
 }
