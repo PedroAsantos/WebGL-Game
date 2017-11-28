@@ -159,7 +159,7 @@ function collisionBubbleTank(){
 
         if(tankCollingwithBubble(bubbletemp,tank)){
           //game over sound
-          var audio = new Audio('../sounds/gameover.wav')
+          var audio = new Audio('../sounds/gameover.mp3')
           audio.play();
           app.lifes-=1;
 
