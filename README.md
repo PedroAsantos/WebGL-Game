@@ -1,4 +1,4 @@
-# CV_WEGGL
+# WebGL Game 
 Development of a game in WebGL. The game was inspired by the famous bubble-trouble. 
 May not work well in some resolutions. 
 
